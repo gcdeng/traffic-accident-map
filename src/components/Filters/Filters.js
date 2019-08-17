@@ -4,20 +4,9 @@ import { Select } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
 class Filters extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            year: 2018,
-            level: 'A1',
-            city: 'taipei',
-        }
-    }
-
-    handleSelect = (label, option) => {
-        this.setState({
-            [label]: option.value
-        });
-    }
+    // constructor(props) {
+    //     super(props);
+    // }
 
     render(){
         const cityOptions = [
@@ -38,23 +27,23 @@ class Filters extends React.Component {
                 <div className="label">年份</div>
                 <Select 
                 options={yearOptions} 
-                value={this.state.year}
-                onChange={(e, option) => this.handleSelect('year', option)}
+                value={this.props.items.year}
+                onChange={(e, option) => this.props.onChange('year', option.value)}
                 />
                 {/* level */}
                 <div className="label">交通事故種類</div>
                 <Select 
                 options={levelOptions} 
-                value={this.state.level}
-                onChange={(e, option) => this.handleSelect('level', option)}
+                value={this.props.items.level}
+                onChange={(e, option) => this.props.onChange('level', option.value)}
                 />
                 {/* city */}
                 <div className="label">縣市</div>
                 <Select 
                 placeholder='選擇' 
                 options={cityOptions} 
-                value={this.state.city}
-                onChange={(e, option) => this.handleSelect('city', option)}
+                value={this.props.items.city}
+                onChange={(e, option) => this.props.onChange('city', option.value)}
                 />
             </div>
         )
