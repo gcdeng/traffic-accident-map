@@ -7,7 +7,10 @@
     "react-dom": "^16.8.6",
     "react-google-maps": "^9.4.5",
     "react-scripts": "3.0.0",
-    "recompose": "^0.30.0"
+    "recompose": "^0.30.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.3",
+    "styled-components": "^4.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

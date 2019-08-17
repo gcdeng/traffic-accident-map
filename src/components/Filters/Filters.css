@@ -1,0 +1,15 @@
+.filters-container {
+    width: 30vw;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+  
+.filters-container .label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.filters-container .field {
+    margin-bottom: 10px;
+}
