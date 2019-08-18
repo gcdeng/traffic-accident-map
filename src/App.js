@@ -27,7 +27,6 @@ class App extends React.Component {
       <div className="App">
         <Map
           className="map-container"
-          isMarkerShown
           filterItems={this.state.filterItems}
         />
         <Filters 
