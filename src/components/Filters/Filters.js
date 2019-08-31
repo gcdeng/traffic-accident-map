@@ -1,6 +1,6 @@
 import React from 'react';
 import './Filters.css';
-import { Select } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 
 class Filters extends React.Component {
@@ -25,21 +25,32 @@ class Filters extends React.Component {
             <div className="filters-container">
                 {/* year */}
                 <div className="label">年份</div>
-                <Select 
+                <Dropdown 
+                fluid
+                multiple
+                selection
+                clearable
                 options={yearOptions} 
                 value={this.props.items.year}
                 onChange={(e, option) => this.props.onChange('year', option.value)}
                 />
                 {/* level */}
                 <div className="label">交通事故種類</div>
-                <Select 
+                <Dropdown
+                fluid
+                selection
+                multiple
+                clearable 
                 options={levelOptions} 
                 value={this.props.items.level}
                 onChange={(e, option) => this.props.onChange('level', option.value)}
                 />
                 {/* city */}
                 <div className="label">縣市</div>
-                <Select 
+                <Dropdown
+                fluid
+                selection
+                clearable 
                 placeholder='選擇' 
                 options={cityOptions} 
                 value={this.props.items.city}
