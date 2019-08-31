@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Map from './components/Map/Map';
 import Filters from './components/Filters/Filters';
+import {sampleData} from './data';
 
 class App extends React.Component {
   constructor(){
@@ -11,23 +12,34 @@ class App extends React.Component {
         year: 2018,
         level: 'A1',
         city: 'taipei',
-      }
+      },
+      mapData: sampleData
     }
   }
+  
   handleFilters = (label, value) => {
-    this.setState({
-      filterItems: {
-        ...this.state.filterItems,
-        [label]: value
+    console.warn(label, value);
+    if(this.state.filterItems[label]===value) return;
+
+    // TODO: fetch new mapData
+    console.warn('fetch new mapData');
+    
+    this.setState((state)=>{
+      return {
+        filterItems: {
+          ...state.filterItems,
+          [label]: value
+        }
       }
     });
   }
+
   render(){
     return (
       <div className="App">
         <Map
           className="map-container"
-          filterItems={this.state.filterItems}
+          mapData={this.state.mapData}
         />
         <Filters 
           items={this.state.filterItems} 
