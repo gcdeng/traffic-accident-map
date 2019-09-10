@@ -2,41 +2,57 @@ import React from 'react';
 import './App.css';
 import Map from './components/Map/Map';
 import Filters from './components/Filters/Filters';
-import {sampleData} from './data';
-const defalutYear = [2018];
-const defaultLevel = ['A1'];
+
+const defalutYear = 2018;
+// const defaultLevel = ['A1'];
 class App extends React.Component {
   constructor(){
     super();
     this.state = {
       filterItems: {
         year: defalutYear,
-        level: defaultLevel,
-        city: 'taipei',
+        // level: defaultLevel,
+        city: '',
       },
-      mapData: sampleData
+      mapData: []
     }
   }
 
-  handleFilters = (label, value) => {
+  async componentDidMount(){
+    console.log('componentDidMount');
+    
+    let res = await fetch(`http://127.0.0.1:8000/api/locations?year=${defalutYear}`);
+    let json = await res.json();
+    console.warn(json);
+    
+    this.setState({
+      mapData: json
+    });
+  }
+
+  handleFilters = async (label, value) => {
     console.warn(label, value);
     if(this.state.filterItems[label]===value) return;
-    
-    if(label==='year' && value.length===0){
-      value = [this.state.filterItems[label][0]];
-    }
-    if(label==='level' && value.length===0){
-      value = [this.state.filterItems[label][0]];
-    }
-    // TODO: fetch new mapData
+
+    // if(label==='year' && value.length===0){
+    //   value = [this.state.filterItems[label][0]];
+    // }
+    // if(label==='level' && value.length===0){
+    //   value = [this.state.filterItems[label][0]];
+    // }
+
     console.warn('fetch new mapData');
+    let res = await fetch(`http://127.0.0.1:8000/api/locations?year=${this.state.filterItems['year']||defalutYear}`);
+    let json = await res.json();
+    // console.warn(json);
     
     this.setState((state)=>{
       return {
         filterItems: {
           ...state.filterItems,
           [label]: value
-        }
+        },
+        mapData: json
       }
     });
   }

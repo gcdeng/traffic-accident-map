@@ -14,28 +14,25 @@ class Filters extends React.Component {
         ];
         const yearOptions = [
             { key: 2018, value: 2018, text: 2018 },
-            { key: 2017, value: 2017, text: 2017 },
         ];
-        const levelOptions = [
-            { key: 'A1', value: 'A1', text: 'A1' },
-            { key: 'A2', value: 'A2', text: 'A2' },
-            { key: 'A3', value: 'A3', text: 'A3' },
-        ];
+        // const levelOptions = [
+        //     { key: 'A1', value: 'A1', text: 'A1' },
+        //     { key: 'A2', value: 'A2', text: 'A2' },
+        //     { key: 'A3', value: 'A3', text: 'A3' },
+        // ]
         return (
             <div className="filters-container">
                 {/* year */}
                 <div className="label">年份</div>
                 <Dropdown 
                 fluid
-                multiple
                 selection
-                clearable
                 options={yearOptions} 
                 value={this.props.items.year}
                 onChange={(e, option) => this.props.onChange('year', option.value)}
                 />
                 {/* level */}
-                <div className="label">交通事故種類</div>
+                {/* <div className="label">交通事故種類</div>
                 <Dropdown
                 fluid
                 selection
@@ -44,7 +41,7 @@ class Filters extends React.Component {
                 options={levelOptions} 
                 value={this.props.items.level}
                 onChange={(e, option) => this.props.onChange('level', option.value)}
-                />
+                /> */}
                 {/* city */}
                 <div className="label">縣市</div>
                 <Dropdown

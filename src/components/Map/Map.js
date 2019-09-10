@@ -36,38 +36,47 @@ const Map = compose(
   withScriptjs,
   withGoogleMap
 )((props) => {
+  console.log('props.mapData', props.mapData);
+
+  let markers = props.mapData.map((data, i) => {
+    let lat = parseFloat(data['緯度'])||0;
+    let lng = parseFloat(data['經度'])||0;
+    if(lat===0 || lng===0) return '';
+
+    return (
+      <Marker
+      noRedraw={true}
+      key={i}
+      position={{ lat, lng }}
+      onClick={() => props.onToggleOpen(i)}
+      >
+        {props.isOpen[i] &&
+        <InfoWindow onCloseClick={() => props.onToggleOpen(i)}>
+          <div>
+              <div>{data['發生地點']}</div>
+              <div>{data['死亡受傷人數']}</div>
+              <div>{data['車種']}</div>
+              <div>{data['發生時間']}</div>
+          </div>
+        </InfoWindow>}
+      </Marker>
+    );
+  });
+
   return (
     <GoogleMap
     defaultZoom={8}
-    defaultCenter={{ lat: props.mapData[0]['緯度'], lng: props.mapData[0]['經度'] }}
+    defaultCenter={{
+      lat: 23.6551383, 
+      lng: 120.9148737
+    }}
     >
         <MarkerClusterer
         averageCenter
         enableRetinaIcons
         gridSize={60}
         >
-        {props.mapData.map((data, i) => {
-            if(typeof data['緯度'] !== 'number' || typeof data['經度'] !== 'number'){
-                return '';
-            }
-            return (
-                <Marker
-                key={i}
-                position={{ lat: data['緯度'], lng: data['經度'] }}
-                onClick={() => props.onToggleOpen(i)}
-                >
-                    {props.isOpen[i] &&
-                    <InfoWindow onCloseClick={() => props.onToggleOpen(i)}>
-                    <div>
-                        <div>{data['發生地點']}</div>
-                        <div>{data['死亡受傷人數']}</div>
-                        <div>{data['車種']}</div>
-                        <div>{data['發生時間']}</div>
-                    </div>
-                    </InfoWindow>}
-                </Marker>
-            );
-        })}
+        {markers}
         </MarkerClusterer>
     </GoogleMap>
   )
