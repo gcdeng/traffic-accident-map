@@ -36,8 +36,6 @@ const Map = compose(
   withScriptjs,
   withGoogleMap
 )((props) => {
-  console.log('props.mapData', props.mapData);
-
   let markers = props.mapData.map((data, i) => {
     let lat = parseFloat(data['緯度'])||0;
     let lng = parseFloat(data['經度'])||0;

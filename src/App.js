@@ -23,8 +23,6 @@ class App extends React.Component {
   async componentDidMount(){    
     let res = await fetch(`${apiRootPath}/locations?year=${defalutYear}`);
     let json = await res.json();
-    console.warn(json);
-    
     this.setState({
       mapData: json
     });
@@ -46,7 +44,6 @@ class App extends React.Component {
   }
 
   handleFilters = async (label, value) => {
-    console.warn(label, value);
     if(this.state.filterItems[label]===value) return;
     this.setState((state)=>{
       return {
