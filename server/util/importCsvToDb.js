@@ -2,9 +2,9 @@ const path = require('path');
 const fs = require('fs');
 const csv = require('csvToJson');
 const mongoose = require('mongoose');
-const initDb = require('./models/db');
+const initDb = require('../models/db');
 const db = initDb();
-const LocationModel = require('./models/location');
+const LocationModel = require('../models/location');
 let importCsvToDb = async () => {
     let csvFiles = fs.readdirSync(path.join(__dirname, './csv/'));
     for (let index = 1; index < csvFiles.length; index++) {
