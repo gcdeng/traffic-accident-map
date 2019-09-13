@@ -32,9 +32,15 @@ router.get('/', async (ctx, next)=>{
 apiRouter.get('/locations', async(ctx, next)=>{
     // query db
     let year = ctx.query.year>1911? ctx.query.year-1911:ctx.query.year;
-    let locations = await LocationModel.find({
-        "發生時間": { "$regex": year, "$options": "i" }
-    });
+    let findOption = {
+        "發生時間": { "$regex": year, "$options": "i" },
+    };
+    let city = ctx.query.city || '';
+    if(city){
+        let regex = new RegExp(`^${city}`, 'i');
+        findOption["發生地點"] = { "$regex": regex };
+    }
+    let locations = await LocationModel.find(findOption);
     ctx.body = locations;
 });
 

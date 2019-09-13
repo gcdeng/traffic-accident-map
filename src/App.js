@@ -30,19 +30,24 @@ class App extends React.Component {
     });
   }
 
-  handleFilters = async (label, value) => {
-    console.warn(label, value);
-    if(this.state.filterItems[label]===value) return;
-
-    if(label==='year') {
-      console.warn('fetch new mapData');
-      let res = await fetch(`${apiRootPath}/locations?year=${value}`);
+  async componentDidUpdate(prevProps, prevState){
+    if(this.state.filterItems.year !== prevState.filterItems.year
+    || this.state.filterItems.city !== prevState.filterItems.city) {
+      let fetchUrl = `${apiRootPath}/locations?year=${this.state.filterItems.year}`;
+      if(this.state.filterItems.city) {
+        fetchUrl += `&city=${this.state.filterItems.city}`;
+      }
+      let res = await fetch(fetchUrl);
       let json = await res.json();
       this.setState({
         mapData: json
       });
     }
-    
+  }
+
+  handleFilters = async (label, value) => {
+    console.warn(label, value);
+    if(this.state.filterItems[label]===value) return;
     this.setState((state)=>{
       return {
         filterItems: {
