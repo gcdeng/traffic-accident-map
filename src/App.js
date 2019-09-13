@@ -61,13 +61,13 @@ class App extends React.Component {
   render(){
     return (
       <div className="App">
-        <Map
-          className="map-container"
-          mapData={this.state.mapData}
-        />
         <Filters 
           items={this.state.filterItems} 
           onChange={this.handleFilters}
+        />
+        <Map
+          className="map-container"
+          mapData={this.state.mapData}
         />
       </div>
     );
