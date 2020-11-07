@@ -6,7 +6,7 @@
 
 資料來源為[內政資料開放平臺-歷史交通事故資料](https://data.moi.gov.tw/MoiOD/Data/DataDetail.aspx?oid=67781E29-8AAD-46A9-A2C8-C3F339592C27)，原檔為CSV須事先匯入MongoDB。
 
-Frontend:
+Frontend
 - React.js
 - create-react-app
 
@@ -21,6 +21,9 @@ Third-party API
 - Google Maps JavaScript API
 
 ``` bash
+# Installation
+$ npm install
+
 # Runs the app in the development mode. 
 $ npm start
 
