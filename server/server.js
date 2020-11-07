@@ -17,7 +17,7 @@ const apiRouter = new Router({
 const buildPath = path.join(__dirname, '../build');
 
 app.use(cors({
-    origin: '*'
+    origin: 'http://127.0.0.1:3000'
 }));
 app.use(serve(buildPath));
 
