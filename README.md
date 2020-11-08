@@ -21,6 +21,8 @@ Backend
 Third-party API
 - Google Maps JavaScript API
 
+### Development
+
 ``` bash
 # Installation
 $ npm install
