@@ -9,6 +9,7 @@
 Frontend
 - React.js
 - create-react-app
+- Semantic UI
 
 Backend
 - Node.js
