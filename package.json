@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@koa/cors": "^2.2.3",
+    "@koa/cors": "^5.0.0",
     "csvtojson": "^2.0.10",
     "koa": "^2.7.0",
     "koa-router": "^7.4.0",
